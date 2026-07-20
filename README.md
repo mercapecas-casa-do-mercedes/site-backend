@@ -123,3 +123,42 @@ git commit -m "feat(health): adiciona endpoint GET /health para monitoramento"
 git commit -m "fix(auth): resolve problema de CORS na rota de login"
 git commit -m "docs: cria o README do projeto"
 ```
+
+---
+
+## 📧 Módulo de E-mails
+
+A API de e-mails utiliza o SDK do **Resend** para envio transacional e está localizada em `src/modules/email/`.
+
+### Variáveis de Ambiente Necessárias
+Adicione as seguintes chaves ao seu `.env` antes de inicializar o servidor:
+```env
+RESEND_API_KEY=sua_chave_aqui
+RESEND_FROM=remetente@seu-dominio-verificado.com
+MAIL_TO=destinatario@exemplo.com
+
+# Origens autorizadas para CORS (opcional em desenvolvimento, valor padrão: http://localhost:5173)
+# Em produção, você pode definir múltiplos domínios separados por vírgula.
+CORS_ORIGIN=http://localhost:5173,https://meudominio.com
+```
+
+### Endpoints Disponíveis
+
+#### `POST /email`
+Envia um e-mail de contato contendo os dados do cliente e a mensagem. O e-mail de retorno (`reply-to`) é automaticamente configurado para o e-mail do cliente, facilitando a resposta direta.
+
+**Payload Requisitado:**
+```json
+{
+  "fullName": "João Silva",
+  "email": "joao@example.com",
+  "phone": "+55 11 99999-9999",
+  "message": "Gostaria de mais informações sobre o painel de instrumentos do Civic 2018."
+}
+```
+
+**Respostas:**
+- `201 Created`: E-mail enviado com sucesso (retorna o `id` do Resend).
+- `400 Bad Request`: Payload inválido ou incompleto.
+- `502 Bad Gateway`: Falha de comunicação com o provedor Resend.
+
