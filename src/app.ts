@@ -15,7 +15,7 @@ app.use(
         callback(null, false);
       }
     },
-    methods: ["POST", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
     credentials: false,
     optionsSuccessStatus: 204,
