@@ -8,7 +8,7 @@ const app = express();
 
 // Cria a configuração do CORS em uma variável
 const corsOptions = {
-  origin: (origin, callback) => {
+  origin: (origin: string | undefined, callback: (err: Error | null, allowed?: boolean) => void) => {
     if (!origin || env.CORS_ORIGINS.includes(origin)) {
       callback(null, true);
     } else {
