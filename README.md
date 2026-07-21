@@ -163,4 +163,3 @@ Envia um e-mail de contato contendo os dados do cliente e a mensagem. O e-mail d
 - `502 Bad Gateway`: Falha de comunicação com o provedor Resend.
 
 
-teste
