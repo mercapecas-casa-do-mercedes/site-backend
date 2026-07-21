@@ -24,9 +24,6 @@ const corsOptions = {
 // Aplica a configuração no Express
 app.use(cors(corsOptions));
 
-// Garante que requisições prévias (OPTIONS) funcionem
-app.options(/(.*)/, cors(corsOptions));
-
 app.use(express.json());
 app.use("/email", emailRouter);
 app.use(errorHandler);
